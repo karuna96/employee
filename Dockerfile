@@ -2,8 +2,8 @@ FROM java
 
 EXPOSE 3333
 
-COPY target/employee.jar /app/
+COPY target/employeee-0.0.1-SNAPSHOT.jar /app/
 
 WORKDIR /app/
 
-CMD ["java", "-jar", "employee.jar"]
+CMD ["java", "-jar", "employeee-0.0.1-SNAPSHOT.jar"]
