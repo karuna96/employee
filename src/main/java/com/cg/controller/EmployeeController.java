@@ -28,10 +28,10 @@ public class EmployeeController {
     @Autowired
     private EurekaClient eurekaClient;
     
-    @GetMapping("communicate/")
+    @GetMapping("/communicate")
     public String getSalary() {
     	
-        String url = "http://payslip/"+ "payslip/" + "to";
+        String url = "http://payslip.local"+ "/payslip" + "/to";
         
         
         
