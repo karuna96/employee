@@ -31,7 +31,7 @@ public class EmployeeController {
     @GetMapping("/communicate")
     public String getSalary() {
     	
-        String url = "http://payslip.local" + "/to";
+        String url = "http://payslip" + "/to";
         
         
         
