@@ -3,7 +3,7 @@ Resources:
   - TargetService:
         Type: AWS::ECS::Service
         Properties:
-            TaskDefinition: "arn:aws:ecs:us-east-1:889894765174:task-definition/employeee:2"
+            TaskDefinition: "arn:aws:ecs:us-east-1:455488782261:task-definition/employee-task-definition:2"
             LoadBalancerInfo:
                 ContainerName: "employeerepository"
                 ContainerPort: 3333
