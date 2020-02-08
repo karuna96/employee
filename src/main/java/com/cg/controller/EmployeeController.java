@@ -23,7 +23,7 @@ public class EmployeeController {
 	
 	@GetMapping("/to")
 	public String hello() {
-		return "Hello employee!!";
+		return "Hi Sir!!";
 	}
 	
 	@GetMapping("/employees")
