@@ -3,6 +3,7 @@ package com.cg.employeee;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +35,24 @@ public class EmployeeControllerTest {
 	}
 	
 	@Test
+	public void employeeListExceptionTest() {
+		
+		Mockito.when(this.employeeRepository.findAll()).thenReturn(null);
+		
+		assertEquals(null, this.employeeController.EmployeeList());
+	}
+	
+	
+	@Test
 	public void createEmployeeTest() {
 		Mockito.when(this.employeeRepository.saveAndFlush(this.getEmployee())).thenReturn(this.getEmployee());
+		
+		assertEquals(null, this.employeeController.createEmployee(this.getEmployee()));
+	}
+	
+	@Test
+	public void createEmployeeExceptionTest() {
+		Mockito.when(this.employeeRepository.saveAndFlush(this.getEmployee())).thenReturn(null);
 		
 		assertEquals(null, this.employeeController.createEmployee(this.getEmployee()));
 	}
@@ -48,6 +65,13 @@ public class EmployeeControllerTest {
 	}
 	
 	@Test
+	public void getByIdExceptionTest() {
+		Mockito.when(this.employeeRepository.getOne(1L)).thenReturn(null);
+		
+		assertEquals(null,this.employeeController.getById(1L));
+	}
+	
+	@Test
 	public void updateByIdTest() {
 		Mockito.when(this.employeeRepository.saveAndFlush(Mockito.any())).thenReturn(this.getEmployee());
 		Mockito.when(this.employeeRepository.getOne(1L)).thenReturn(this.getEmployee());
@@ -56,10 +80,25 @@ public class EmployeeControllerTest {
 	}
 	
 	@Test
+	public void updateByIdExceptionTest() {
+		Mockito.when(this.employeeRepository.saveAndFlush(Mockito.any())).thenReturn(this.getEmployee());
+		Mockito.when(this.employeeRepository.getOne(1L)).thenReturn(null);
+		
+		assertEquals(null, this.employeeController.updateById(1L, "Gowthami"));
+	}
+	
+	@Test
 	public void deleteByIdTest() {
 		Mockito.when(this.employeeRepository.getOne(1L)).thenReturn(this.getEmployee());
 		
 		assertNotNull(this.employeeController.deleteById(1L));
+	}
+	
+	@Test
+	public void deleteByIdExceptionTest() {
+		Mockito.when(this.employeeRepository.getOne(1L)).thenReturn(null);
+		
+		assertEquals(null, this.employeeController.deleteById(1L));
 	}
 	
 	@Test

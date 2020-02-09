@@ -28,33 +28,47 @@ public class EmployeeController {
 	
 	@GetMapping("/employees")
 	public List<employeeEntity> EmployeeList(){
+		List<employeeEntity> employeeList = employeeRepository.findAll();
+		if(employeeList==null)
+		return null;
+		else
+		return employeeList;
 		
-		return employeeRepository.findAll();
 	}
 	
 	@PostMapping("/create")
 	public employeeEntity createEmployee(@RequestBody employeeEntity employee) {
-		
-		return employeeRepository.saveAndFlush(employee);
+		employeeEntity employeee = employeeRepository.saveAndFlush(employee);
+		if(employeee==null)
+		return null;
+		else
+		return employee;
 	}
 	
 	@GetMapping("/get/{id}")
 	public employeeEntity getById(@PathVariable Long id)
 	{
-		return employeeRepository.getOne(id);
+		employeeEntity employee = employeeRepository.getOne(id);
+		if(employee == null)
+			return null;
+		else
+		return employee;
 	}
 	
 	@PutMapping("/update/{id}/{name}")
 	public employeeEntity updateById(@PathVariable Long id, @PathVariable String name) {
 		employeeEntity employee=employeeRepository.getOne(id);
+		if(employee!=null) {
 		employee.setName(name);
 		employeeRepository.saveAndFlush(employee);
+		}
 		return employee;
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public employeeEntity deleteById(@PathVariable Long id) {
 		employeeEntity employee=employeeRepository.getOne(id);
+		if(employee!=null)
 		employeeRepository.deleteById(id);
 		return employee;
 	}
